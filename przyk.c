@@ -29,7 +29,7 @@ mrb_int n;
  for(uint32_t i = 0; i < 16; ++i)
   {
   spo->jeden[i] = i * n;
-  spo->dwa[i] = i * n * n;
+  spo->dwa[i] = i * n * 2;
   }
 
  mrb_data_init(self, spo, &Spoko_Typ);
@@ -53,6 +53,26 @@ struct Spoko_Dane *spo;
 return mrb_nil_value();
 }
 
+char naglowek_pliku[3] = "SPO";
+
+mrb_value Spoko_zapisz(mrb_state* state, mrb_value self)
+{
+struct Spoko_Dane *spo;
+FILE *plik;
+
+ Data_Get_Struct(state, self, &Spoko_Typ, spo);
+ mrb_assert(spo != NULL);
+
+ if ((plik = fopen("wynik.bin","wb")) == NULL)
+  { return mrb_nil_value(); }
+
+ fwrite(naglowek_pliku, sizeof(char), 3, plik);
+ fwrite(&spo, sizeof(struct Spoko_Dane), 1, plik);
+ fclose(plik);
+
+return self;
+}
+
 int main()
 {
 mrb_state *mrb = mrb_open();
@@ -63,8 +83,9 @@ mrb_state *mrb = mrb_open();
  MRB_SET_INSTANCE_TT(Spo, MRB_TT_DATA);
  mrb_define_method(mrb, Spo, "initialize", Spoko_initialize, MRB_ARGS_REQ(1));
  mrb_define_method(mrb, Spo, "pisz", Spoko_pisz, MRB_ARGS_NONE());
+ mrb_define_method(mrb, Spo, "zapisz", Spoko_zapisz, MRB_ARGS_NONE());
 
- mrb_load_string(mrb, "a = Spoko.new(10); a.pisz; p a");
+ mrb_load_string(mrb, "a = Spoko.new(10); a.pisz; p a; p a.zapisz()");
 
  mrb_close(mrb);
 

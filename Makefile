@@ -2,7 +2,7 @@ CPP      = g++
 CC       = gcc
 MM       = ./mruby
 MBU      = $(MM)/build/host
-OPCJE99  = -Wall -O0 -std=c99 -pedantic -pedantic-errors -static
+OPCJE99  = -Wall -O0 -std=c99 -pedantic -pedantic-errors
 PROG     = przyk
 
 ./$(PROG): $(PROG).c Makefile
@@ -16,4 +16,4 @@ mem: ./$(PROG)
 .PHONY: clean
 
 clean:
-	rm -f ./$(PROG)
+	rm -f ./$(PROG) ./wynik.bin
