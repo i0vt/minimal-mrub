@@ -85,7 +85,7 @@ mrb_state *mrb = mrb_open();
  mrb_define_method(mrb, Spo, "pisz", Spoko_pisz, MRB_ARGS_NONE());
  mrb_define_method(mrb, Spo, "zapisz", Spoko_zapisz, MRB_ARGS_NONE());
 
- mrb_load_string(mrb, "a = Spoko.new(10); a.pisz; p a; p a.zapisz()");
+ mrb_load_string(mrb, "a = Spoko.new(10); a.pisz; p a.zapisz()");
 
  mrb_close(mrb);
 
