@@ -1,0 +1,14 @@
+simple 'make' create the program
+'make mem' check memory leak and other errors.
+
+In this program I have many errors but no memory leak.
+mruby 3.1.0 on ./mruby
+I change only 2 file on /conf dir
+$rake to build mruby
+
+a) Fedora:
+$uname -a
+Linux 5.11.18-100.fc32.x86_64 #1 SMP x86_64
+
+b) Ubuntu
+

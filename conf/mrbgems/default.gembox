@@ -1,0 +1,20 @@
+MRuby::GemBox.new do |conf|
+ conf.gembox "stdlib"
+
+ # Generate mrbc command
+ conf.gem :core => "mruby-bin-mrbc"
+
+ # Generate mirb command
+ conf.gem :core => "mruby-bin-mirb"
+
+ # Generate mruby command
+ conf.gem :core => "mruby-bin-mruby"
+
+ # Generate mruby-strip command
+ conf.gem :core => "mruby-bin-strip"
+
+ # Generate mruby-config command
+ conf.gem :core => "mruby-bin-config"
+
+ conf.gem :github => 'mattn/mruby-onig-regexp'
+end
